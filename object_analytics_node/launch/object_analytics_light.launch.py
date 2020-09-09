@@ -43,7 +43,7 @@ def generate_launch_description():
             package='object_analytics_rviz', node_executable='marker_publisher', output='screen'),
 
         # rviz
-        launch_ros.actions.Node(
-            package='rviz2', node_executable='rviz2', output='screen',
-            arguments=['--display-config', default_rviz]),
+        #launch_ros.actions.Node(
+            #package='rviz2', node_executable='rviz2', output='screen',
+            #arguments=['--display-config', default_rviz]),
     ])

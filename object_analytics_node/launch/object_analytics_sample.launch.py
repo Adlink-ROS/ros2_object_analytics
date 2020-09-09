@@ -17,11 +17,15 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 import launch_ros.actions
-
+from launch.actions import DeclareLaunchArgument
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration
 
 def generate_launch_description():
     default_rviz = os.path.join(get_package_share_directory('object_analytics_node'), 'launch',
                                 'rviz/default.rviz')
+    open_rviz = LaunchConfiguration('open_rviz', default='false')
+
     return LaunchDescription([
         # object_analytics_node
         launch_ros.actions.Node(
@@ -43,7 +47,12 @@ def generate_launch_description():
             package='object_analytics_rviz', node_executable='marker_publisher', output='screen'),
 
         # rviz
+        DeclareLaunchArgument(
+            'open_rviz',
+            default_value='false',
+            description='Launch Rviz?'),          
         launch_ros.actions.Node(
             package='rviz2', node_executable='rviz2', output='screen',
+            condition=IfCondition(LaunchConfiguration("open_rviz")),            
             arguments=['--display-config', default_rviz]),
     ])

@@ -30,11 +30,12 @@ def generate_launch_description():
         # object_analytics_node
         launch_ros.actions.Node(
             package='object_analytics_node', node_executable='object_analytics_node',
+            #arguments=['--tracking', '--localization', '__log_level:=debug'],
             arguments=['--tracking', '--localization'],
             remappings=[
                 ('/object_analytics/detected_objects', '/ros2_openvino_toolkit/detected_objects'),
                 ('/object_analytics/rgb', '/camera/color/image_raw'),
-                ('/object_analytics/pointcloud', '/camera/aligned_depth_to_color/color/points')],
+                ('/object_analytics/pointcloud', '/camera/pointcloud')],
             output='screen'),
 
         # object_analytics_rviz

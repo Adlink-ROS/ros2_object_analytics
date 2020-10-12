@@ -96,7 +96,7 @@ We support Ubuntu Linux Bionic Beaver 18.04 on 64-bit. We not support Mac OS X a
        OpenVino:  https://github.com/intel/ros2_openvino_toolkit
     b) Make sure below topics works well, or please config the remapping topics in "object_analytics_sample.launch.py":
        1. /camera/color/image_raw
-       2. /camera/aligned_depth_to_color/color/points
+       2. /camera/pointcloud
        3. /ros2_openvino_toolkit/detected_objects
 
   Step2: if ros2_openvino_toolkit got from Robotics_SDK
